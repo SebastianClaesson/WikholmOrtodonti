@@ -13,6 +13,7 @@
             navBenefits: 'Fördelar',
             navDoctor: 'Dr. Wikholm',
             navClinics: 'Kliniker',
+            navBlog: 'Nyheter',
             navFaq: 'FAQ',
             navContact: 'Kontakt',
             heroEyebrow: 'Wikholm Ortodonti',
@@ -81,6 +82,22 @@
             clinic3Name: 'Klinik 3',
             clinic3Address: 'Adress att uppdatera<br>Stad, Postnummer',
             clinicLink: 'Besök hemsida',
+            blogEyebrow: 'Nyheter & tips',
+            blogTitle: 'Aktuellt inom ortodonti',
+            blogIntro: 'Artiklar, tips och nyheter om tandreglering, munhälsa och det senaste inom Invisalign och ClearCorrect.',
+            blogCatGuide: 'Guide',
+            blogCatTips: 'Tips',
+            blogCatHealth: 'Munhälsa',
+            blog1Date: '15 mars 2026',
+            blog1Title: 'Invisalign vs ClearCorrect: Vilken behandling passar dig?',
+            blog1Excerpt: 'En jämförelse av de två ledande systemen för genomskinlig tandreglering — material, process, kostnad och resultat.',
+            blog2Date: '1 mars 2026',
+            blog2Title: '5 tips för att få ut mest av din skenbehandling',
+            blog2Excerpt: 'Praktiska råd som hjälper dig hålla behandlingen på rätt spår — från rengöring till bärtid och kontroller.',
+            blog3Date: '14 februari 2026',
+            blog3Title: 'Varför raka tänder handlar om mer än estetik',
+            blog3Excerpt: 'Felställda tänder kan påverka tuggfunktion, munhygien och till och med huvudvärk. Läs om hälsofördelarna med ortodonti.',
+            blogReadMore: 'Läs mer &rarr;',
             faqEyebrow: 'Vanliga frågor',
             faqTitle: 'Frågor & svar',
             faqIntro: 'Här hittar du svar på de vanligaste frågorna om Invisalign och ClearCorrect.',
@@ -109,6 +126,7 @@
             navBenefits: 'Benefits',
             navDoctor: 'Dr. Wikholm',
             navClinics: 'Clinics',
+            navBlog: 'News',
             navFaq: 'FAQ',
             navContact: 'Contact',
             heroEyebrow: 'Wikholm Ortodonti',
@@ -177,6 +195,22 @@
             clinic3Name: 'Clinic 3',
             clinic3Address: 'Address to update<br>City, Postal code',
             clinicLink: 'Visit website',
+            blogEyebrow: 'News & tips',
+            blogTitle: 'Latest in orthodontics',
+            blogIntro: 'Articles, tips and news about orthodontic treatment, oral health, and the latest in Invisalign and ClearCorrect.',
+            blogCatGuide: 'Guide',
+            blogCatTips: 'Tips',
+            blogCatHealth: 'Oral health',
+            blog1Date: 'March 15, 2026',
+            blog1Title: 'Invisalign vs ClearCorrect: Which treatment is right for you?',
+            blog1Excerpt: 'A comparison of the two leading clear aligner systems — materials, process, cost, and results.',
+            blog2Date: 'March 1, 2026',
+            blog2Title: '5 tips to get the most out of your aligner treatment',
+            blog2Excerpt: 'Practical advice to keep your treatment on track — from cleaning to wear time and check-ups.',
+            blog3Date: 'February 14, 2026',
+            blog3Title: 'Why straight teeth are about more than aesthetics',
+            blog3Excerpt: 'Misaligned teeth can affect chewing, oral hygiene, and even cause headaches. Learn about the health benefits of orthodontics.',
+            blogReadMore: 'Read more &rarr;',
             faqEyebrow: 'Common questions',
             faqTitle: 'FAQ',
             faqIntro: 'Find answers to the most common questions about Invisalign and ClearCorrect.',
@@ -253,12 +287,12 @@
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('.about-card, .process-step, .benefit-item, .clinic-card').forEach(function (el, i) {
+        document.querySelectorAll('.about-card, .process-step, .benefit-item, .clinic-card, .blog-card').forEach(function (el, i) {
             el.style.transitionDelay = (i % 4) * 0.1 + 's';
             observer.observe(el);
         });
     } else {
-        document.querySelectorAll('.about-card, .process-step, .benefit-item, .clinic-card').forEach(function (el) {
+        document.querySelectorAll('.about-card, .process-step, .benefit-item, .clinic-card, .blog-card').forEach(function (el) {
             el.classList.add('visible');
         });
     }
