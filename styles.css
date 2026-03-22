@@ -842,6 +842,12 @@ h1, h2, h3, h4 {
     color: var(--color-primary-dark);
 }
 
+a.blog-card-clickable {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 /* --- FAQ Section --- */
 .section-faq {
     background: var(--color-bg);

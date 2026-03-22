@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wikholm Effect — When Excellence Runs in the Family | Wikholm Ortodonti</title>
+    <meta name="description" content="How Dr. André Wikholm became Sweden's most sought-after orthodontist, and how his brother-in-law Sebastian Claesson is doing the same in IT.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/wikholm_ortodonti_ab_logo.jpg" type="image/jpeg">
+    <style>
+        :root {
+            --color-primary: #1a6b8a;
+            --color-primary-dark: #134f67;
+            --color-primary-light: #e6f3f8;
+            --color-text: #1e293b;
+            --color-text-secondary: #475569;
+            --color-text-light: #94a3b8;
+            --color-bg: #ffffff;
+            --color-bg-warm: #f8fafb;
+            --color-border: #e2e8f0;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --color-primary: #3db8e0;
+            --color-primary-dark: #2a93b8;
+            --color-primary-light: #1a2e38;
+            --color-text: #e8ecf0;
+            --color-text-secondary: #b0bcc8;
+            --color-text-light: #6b7d8d;
+            --color-bg: #0f1a20;
+            --color-bg-warm: #14222a;
+            --color-border: #2a3e4a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Header bar */
+        .article-header-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 24px;
+        }
+
+        [data-theme="dark"] .article-header-bar {
+            background: rgba(15,26,32,0.92);
+        }
+
+        .header-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-back {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .header-back img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
+
+        .header-back:hover {
+            color: var(--color-primary);
+        }
+
+        .theme-toggle-article {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            background: var(--color-bg-warm);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            transition: 0.3s ease;
+        }
+
+        .theme-toggle-article:hover {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        /* Hero */
+        .article-hero {
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-primary-light) 100%);
+            padding: 80px 24px 60px;
+            text-align: center;
+        }
+
+        .article-hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 4px 14px;
+            background: var(--color-primary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .article-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+            color: var(--color-text);
+            margin-bottom: 20px;
+        }
+
+        .article-hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            max-width: 560px;
+            margin: 0 auto 24px;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .article-meta time {
+            font-weight: 600;
+        }
+
+        /* Content */
+        .article-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+        }
+
+        .article-content h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            color: var(--color-text);
+            margin-top: 48px;
+            margin-bottom: 20px;
+        }
+
+        .article-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--color-text);
+            margin-top: 36px;
+            margin-bottom: 16px;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--color-primary);
+            padding: 20px 28px;
+            margin: 32px 0;
+            background: var(--color-bg-warm);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .article-content blockquote p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+
+        .article-content blockquote cite {
+            font-size: 0.85rem;
+            font-style: normal;
+            color: var(--color-text-light);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--color-primary-light);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 36px 0;
+        }
+
+        .article-content .highlight-box h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .article-content .highlight-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .article-content .duo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .article-content .duo-card {
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-warm);
+        }
+
+        .article-content .duo-card h3 {
+            margin-top: 0;
+            font-size: 1.15rem;
+        }
+
+        .article-content .duo-card .emoji {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .article-content .duo-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .article-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--color-primary);
+            border-radius: 2px;
+            margin: 48px auto;
+        }
+
+        /* Footer */
+        .article-footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .article-footer a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+        .article-footer a:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+            .article-hero {
+                padding: 60px 20px 40px;
+            }
+
+            .article-hero h1 {
+                font-size: 1.85rem;
+            }
+
+            .article-content {
+                padding: 36px 20px 60px;
+            }
+
+            .article-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .article-content .duo-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="article-header-bar">
+        <div class="header-inner">
+            <a href="index.html" class="header-back">
+                <img src="images/wikholm_ortodonti_ab_logo.jpg" alt="Wikholm Ortodonti">
+                <span>&larr; Wikholm Ortodonti</span>
+            </a>
+            <button class="theme-toggle-article" aria-label="Toggle dark mode" onclick="(function(){var d=document.documentElement,t=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',t);localStorage.setItem('wikholm-theme',t)})()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="article-hero">
+        <div class="article-hero-inner">
+            <span class="article-category">Feature</span>
+            <h1>The Wikholm Effect: When Excellence Runs in the Family</h1>
+            <p class="subtitle">How Dr. André Wikholm became Sweden's most sought-after orthodontist — and how his brother-in-law Sebastian Claesson is doing the exact same thing in IT.</p>
+            <p class="article-meta">Published <time datetime="2026-03-22">March 22, 2026</time> &middot; 5 min read</p>
+        </div>
+    </div>
+
+    <article class="article-content">
+
+        <p>There's a saying in Sweden: <em>"Behind every great smile is an even greater orthodontist."</em> Okay, nobody actually says that — but if they did, they'd be talking about Dr. André Wikholm.</p>
+
+        <p>As the founder of Wikholm Ortodonti and a specialist in both Invisalign and ClearCorrect, André has quietly become one of the most respected names in Swedish orthodontics. With nine clinics across the country — from Örnsköldsvik in the north to multiple locations across the Stockholm region — he's built something rare: a practice that combines cutting-edge technology with genuine, personal care.</p>
+
+        <h2>The man behind the aligners</h2>
+
+        <p>Patients who meet André for the first time often remark on the same thing: he actually listens. In a field where rushed consultations and one-size-fits-all treatment plans are distressingly common, André takes a different approach. Every patient gets a thorough digital scan, a detailed 3D treatment visualization, and — most importantly — an honest conversation about what's possible.</p>
+
+        <blockquote>
+            <p>"The best technology in the world means nothing if you don't take the time to understand what the patient actually needs. A perfect smile starts with a conversation, not a scan."</p>
+            <cite>— Dr. André Wikholm</cite>
+        </blockquote>
+
+        <p>His expertise in both Invisalign and ClearCorrect gives him a unique edge. Rather than being locked into one system, André evaluates each case individually and recommends the approach that will deliver the best results. It's a level of objectivity that's become his calling card.</p>
+
+        <p>The numbers speak for themselves. Nine partner clinics. Thousands of successfully completed treatments. A growing reputation that extends well beyond Sweden's borders. André doesn't just practice orthodontics — he's raising the standard for what patients should expect from it.</p>
+
+        <h2>Meanwhile, in a server room nearby...</h2>
+
+        <p>If André is the one perfecting smiles, his brother-in-law Sebastian Claesson is the one making sure the digital world doesn't fall apart. And honestly? He might be just as good at his job.</p>
+
+        <p>Sebastian is a force in the Swedish IT community — the kind of engineer who other engineers go to when they're stuck. With deep expertise spanning cloud infrastructure, automation, and modern DevOps practices, he has built a reputation as someone who doesn't just solve problems — he eliminates the conditions that created them in the first place.</p>
+
+        <blockquote>
+            <p>"I don't like fixing the same problem twice. If something breaks, I want to understand why, fix it, and then make sure it can never break that way again."</p>
+            <cite>— Sebastian Claesson</cite>
+        </blockquote>
+
+        <p>Where André uses 3D scanning and treatment planning software to visualize the perfect smile, Sebastian uses infrastructure-as-code and automation pipelines to architect systems that just <em>work</em>. Different domains, same philosophy: plan meticulously, execute precisely, and never settle for "good enough."</p>
+
+        <div class="article-divider"></div>
+
+        <h2>Two fields, one family, zero compromises</h2>
+
+        <p>What makes the André-Sebastian dynamic fascinating isn't just that they're both excellent at what they do — it's <em>how</em> they're excellent. They share an almost identical approach to their craft:</p>
+
+        <div class="duo-section">
+            <div class="duo-card">
+                <span class="emoji">🦷</span>
+                <h3>Dr. André Wikholm</h3>
+                <p>Evaluates each patient individually. Uses the latest digital tools to create precise, personalized treatment plans. Chooses between Invisalign and ClearCorrect based on what's best for the patient — not what's easiest for the practice. Obsessed with getting it right.</p>
+            </div>
+            <div class="duo-card">
+                <span class="emoji">💻</span>
+                <h3>Sebastian Claesson</h3>
+                <p>Evaluates each system individually. Uses the latest cloud and automation tools to build resilient, scalable infrastructure. Chooses the right technology for the problem — not the most fashionable one. Equally obsessed with getting it right.</p>
+            </div>
+        </div>
+
+        <p>At family dinners, the two reportedly trade notes — André explaining the biomechanics of tooth movement while Sebastian breaks down the architecture of a particularly elegant deployment pipeline. Their partners, one imagines, have learned to smile and nod.</p>
+
+        <h3>The overlap nobody expected</h3>
+
+        <p>Here's the thing about orthodontics and IT that most people don't realize: they're both fundamentally about systems thinking. André moves teeth through a carefully sequenced series of aligners — each one building on the last, each one a small, precise adjustment toward the final goal. Sebastian deploys infrastructure changes through carefully sequenced pipelines — each step validated, each change incremental and reversible.</p>
+
+        <p>Both of them understand that the best results come not from dramatic interventions, but from consistent, well-planned, small steps executed with precision. It's not glamorous. It's just effective.</p>
+
+        <div class="highlight-box">
+            <h3>By the numbers</h3>
+            <p>Dr. Wikholm works across <strong>9 clinics</strong> throughout Sweden, from Stockholm to Örnsköldsvik, offering specialist Invisalign and ClearCorrect treatments. Sebastian, meanwhile, has lost count of how many servers he's deployed — but insists every single one of them is still running perfectly. (We haven't independently verified this claim.)</p>
+        </div>
+
+        <h2>What's next?</h2>
+
+        <p>André continues to expand Wikholm Ortodonti's reach, with plans to bring accessible, high-quality orthodontic care to even more patients across Sweden. His mission hasn't changed since day one: give every patient the smile they deserve, using the best technology available.</p>
+
+        <p>Sebastian, for his part, continues to do what he does best — building things that work, fixing things that don't, and occasionally reminding André that his clinic's website could use an update. (André would like it noted that the website is, in fact, <em>excellent</em>.)</p>
+
+        <p>Some families produce athletes. Others produce musicians. The Wikholm-Claesson family? They produce people who are unreasonably good at what they do. And honestly, Sweden is better for it.</p>
+
+        <div class="article-divider"></div>
+
+        <p style="text-align: center; color: var(--color-text-light); font-size: 0.9rem; font-style: italic;">This article is a work of creative appreciation. Any resemblance to actual journalism is purely coincidental and frankly quite flattering.</p>
+
+    </article>
+
+    <footer class="article-footer">
+        <a href="index.html">&larr; Back to Wikholm Ortodonti</a>
+    </footer>
+
+    <script>
+        var saved = localStorage.getItem('wikholm-theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+        else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+    </script>
+</body>
+</html>
