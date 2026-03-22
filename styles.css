@@ -1,70 +1,70 @@
 /* ==========================================================================
    Wikholm Ortodonti — Styles
-   Clean, professional dental aesthetic with dark mode support
+   Modern, tech-forward aesthetic with dark mode support
    ========================================================================== */
 
 /* --- Design Tokens (Light) --- */
 :root {
-    --color-primary: #1a6b8a;
-    --color-primary-dark: #134f67;
-    --color-primary-light: #e6f3f8;
-    --color-accent: #2aa5d4;
-    --color-accent-light: #d0eef9;
-    --color-text: #1e293b;
+    --color-primary: #4f46e5;
+    --color-primary-dark: #3730a3;
+    --color-primary-light: #eef2ff;
+    --color-accent: #06b6d4;
+    --color-accent-light: #e0f7fa;
+    --color-text: #0f172a;
     --color-text-secondary: #475569;
     --color-text-light: #94a3b8;
     --color-bg: #ffffff;
-    --color-bg-warm: #f8fafb;
-    --color-bg-section: #f1f7fa;
+    --color-bg-warm: #f8fafc;
+    --color-bg-section: #f1f5f9;
     --color-bg-card: #ffffff;
     --color-border: #e2e8f0;
     --color-linkedin: #0a66c2;
 
-    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
-    --shadow-card: 0 2px 12px rgba(26,107,138,0.08);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
 
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
 
-    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --navbar-bg: rgba(255, 255, 255, 0.92);
-    --hero-gradient: linear-gradient(135deg, var(--color-bg) 0%, var(--color-primary-light) 50%, var(--color-accent-light) 100%);
+    --navbar-bg: rgba(255, 255, 255, 0.85);
+    --hero-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #e0f7fa 100%);
     --placeholder-bg: rgba(255,255,255,0.6);
 }
 
 /* --- Dark Theme --- */
 [data-theme="dark"] {
-    --color-primary: #3db8e0;
-    --color-primary-dark: #2a93b8;
-    --color-primary-light: #1a2e38;
-    --color-accent: #5cc8e8;
-    --color-accent-light: #1a2830;
-    --color-text: #e8ecf0;
-    --color-text-secondary: #b0bcc8;
-    --color-text-light: #6b7d8d;
-    --color-bg: #0f1a20;
-    --color-bg-warm: #14222a;
-    --color-bg-section: #162028;
-    --color-bg-card: #1a2c36;
-    --color-border: #2a3e4a;
-    --color-linkedin: #4da3db;
+    --color-primary: #818cf8;
+    --color-primary-dark: #6366f1;
+    --color-primary-light: #1e1b4b;
+    --color-accent: #22d3ee;
+    --color-accent-light: #0c1a1e;
+    --color-text: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-light: #64748b;
+    --color-bg: #0b1120;
+    --color-bg-warm: #0f172a;
+    --color-bg-section: #131c2e;
+    --color-bg-card: #162032;
+    --color-border: #1e293b;
+    --color-linkedin: #818cf8;
 
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
-    --shadow-md: 0 4px 16px rgba(0,0,0,0.3);
-    --shadow-lg: 0 12px 40px rgba(0,0,0,0.35);
-    --shadow-card: 0 2px 12px rgba(0,0,0,0.2);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.3);
 
-    --navbar-bg: rgba(15, 26, 32, 0.92);
-    --hero-gradient: linear-gradient(135deg, var(--color-bg) 0%, #132530 50%, #0f2028 100%);
-    --placeholder-bg: rgba(26, 44, 54, 0.6);
+    --navbar-bg: rgba(11, 17, 32, 0.88);
+    --hero-gradient: linear-gradient(135deg, #0b1120 0%, #131835 50%, #0f1a2e 100%);
+    --placeholder-bg: rgba(22, 32, 50, 0.6);
 }
 
 /* --- Reset & Base --- */
@@ -102,8 +102,9 @@ a {
 
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    line-height: 1.2;
-    font-weight: 600;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 .container {
@@ -306,12 +307,12 @@ h1, h2, h3, h4 {
 .btn-primary {
     background: var(--color-primary);
     color: white;
-    box-shadow: 0 2px 8px rgba(26, 107, 138, 0.25);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
 }
 
 .btn-primary:hover {
     background: var(--color-primary-dark);
-    box-shadow: 0 4px 16px rgba(26, 107, 138, 0.35);
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
     transform: translateY(-1px);
 }
 
@@ -354,10 +355,10 @@ h1, h2, h3, h4 {
 .hero-bg {
     position: absolute;
     inset: 0;
-    opacity: 0.4;
+    opacity: 0.5;
     background:
-        radial-gradient(ellipse 600px 600px at 80% 20%, rgba(42, 165, 212, 0.15), transparent),
-        radial-gradient(ellipse 400px 400px at 20% 80%, rgba(26, 107, 138, 0.1), transparent);
+        radial-gradient(ellipse 600px 600px at 80% 20%, rgba(79, 70, 229, 0.12), transparent),
+        radial-gradient(ellipse 400px 400px at 20% 80%, rgba(6, 182, 212, 0.08), transparent);
 }
 
 .hero-content {
@@ -520,10 +521,11 @@ h1, h2, h3, h4 {
 .step-number {
     font-family: var(--font-heading);
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--color-primary-light);
     line-height: 1;
     margin-bottom: 16px;
+    letter-spacing: -0.03em;
 }
 
 [data-theme="dark"] .step-number {
@@ -789,7 +791,7 @@ h1, h2, h3, h4 {
 }
 
 [data-theme="dark"] .blog-card-image {
-    background: linear-gradient(135deg, #1a2e38 0%, #1a2830 100%);
+    background: linear-gradient(135deg, #1e1b4b 0%, #0c1a1e 100%);
 }
 
 .blog-card-category {
@@ -946,13 +948,13 @@ a.blog-card-clickable {
 
 /* --- CTA Section --- */
 .section-cta {
-    background: linear-gradient(135deg, #1a6b8a 0%, #134f67 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
     color: white;
     text-align: center;
 }
 
 [data-theme="dark"] .section-cta {
-    background: linear-gradient(135deg, #162c38 0%, #0f1e26 100%);
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
 }
@@ -992,7 +994,7 @@ a.blog-card-clickable {
 
 .section-cta .btn-primary {
     background: white;
-    color: #1a6b8a;
+    color: #4f46e5;
     box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
@@ -1028,14 +1030,14 @@ a.blog-card-clickable {
 
 /* --- Footer --- */
 .footer {
-    background: #1e293b;
-    color: rgba(255,255,255,0.6);
+    background: #0f172a;
+    color: rgba(255,255,255,0.5);
     padding: 40px 0;
 }
 
 [data-theme="dark"] .footer {
-    background: #0a1218;
-    color: #6b7d8d;
+    background: #060a14;
+    color: #64748b;
 }
 
 .footer-content {
