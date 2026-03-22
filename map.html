@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kliniker — Wikholm Ortodonti</title>
+    <link rel="icon" href="images/wikholm_ortodonti_ab_logo.jpg" type="image/jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --color-primary: #1a6b8a;
+            --color-primary-dark: #134f67;
+            --color-text: #1e293b;
+            --color-text-secondary: #475569;
+            --color-bg: #ffffff;
+            --color-border: #e2e8f0;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: #f1f7fa;
+        }
+
+        .page-header {
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-header img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+
+        .page-header h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .page-header a {
+            margin-left: auto;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .page-header a:hover {
+            text-decoration: underline;
+        }
+
+        .map-wrapper {
+            display: flex;
+            height: calc(100vh - 65px);
+        }
+
+        #map {
+            flex: 1;
+            min-height: 400px;
+        }
+
+        .sidebar {
+            width: 360px;
+            background: var(--color-bg);
+            border-left: 1px solid var(--color-border);
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .sidebar h2 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
+
+        .clinic-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .clinic-item {
+            padding: 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .clinic-item:hover,
+        .clinic-item.active {
+            border-color: var(--color-primary);
+            background: #f0f8fb;
+            box-shadow: 0 2px 8px rgba(26,107,138,0.1);
+        }
+
+        .clinic-item h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--color-text);
+        }
+
+        .clinic-item p {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .clinic-item a {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .clinic-item a:hover {
+            text-decoration: underline;
+        }
+
+        .clinic-item .phone {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Leaflet popup styling */
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            font-family: var(--font-body);
+        }
+
+        .leaflet-popup-content {
+            margin: 16px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .leaflet-popup-content h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--color-text);
+        }
+
+        .leaflet-popup-content p {
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .leaflet-popup-content a {
+            color: var(--color-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .leaflet-popup-content a:hover {
+            text-decoration: underline;
+        }
+
+        .marker-count {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .map-wrapper {
+                flex-direction: column;
+                height: auto;
+            }
+
+            #map {
+                height: 55vh;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid var(--color-border);
+                max-height: 45vh;
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <img src="images/wikholm_ortodonti_ab_logo.jpg" alt="Wikholm Ortodonti">
+        <h1>Wikholm Ortodonti — Kliniker</h1>
+        <a href="index.html">&larr; Tillbaka</a>
+    </header>
+
+    <div class="map-wrapper">
+        <div id="map"></div>
+        <aside class="sidebar">
+            <h2>Kliniker</h2>
+            <p class="marker-count">9 kliniker i Sverige</p>
+            <div class="clinic-list" id="clinicList"></div>
+        </aside>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var clinics = [
+            {
+                name: 'Swedish Dental (Dentalum)',
+                address: 'Kungsholmstorg 8, 112 21 Stockholm',
+                phone: '+46 8 651 36 20',
+                url: 'https://swedishdental.com',
+                lat: 59.3313,
+                lng: 18.0390
+            },
+            {
+                name: 'Erikssonkliniken',
+                address: 'Götgatan 21, Stockholm',
+                phone: '+46 8 556 987 00',
+                url: 'https://erikssonkliniken.se',
+                lat: 59.3176,
+                lng: 18.0728
+            },
+            {
+                name: 'Samdent Arenastaden',
+                address: 'Evenemangsgatan 21, Solna',
+                phone: '+46 8 333 455',
+                url: 'https://samdent.se',
+                lat: 59.3706,
+                lng: 18.0014
+            },
+            {
+                name: 'Wasa Tandklinik',
+                address: 'Tegnérgatan 8, Stockholm',
+                phone: '+46 8 21 01 85',
+                url: 'https://wasatandklinik.se',
+                lat: 59.3408,
+                lng: 18.0565
+            },
+            {
+                name: 'Tegnértandläkarna',
+                address: 'Tegnérgatan 3, 2 tr, Stockholm',
+                phone: '+46 8 10 99 01',
+                url: 'https://tegnertandlakarna.se',
+                lat: 59.3402,
+                lng: 18.0553
+            },
+            {
+                name: 'S&S Dental',
+                address: 'Storgatan 70C, Huvudsta Centrum, Solna',
+                phone: '+46 70 438 13 72',
+                url: 'https://ssdental.se',
+                lat: 59.3501,
+                lng: 17.9880
+            },
+            {
+                name: 'Dentalum Tandläkarhuset Enköping',
+                address: 'Kryddgårdsgatan 21A, Enköping',
+                phone: '+46 171 42 81 60',
+                url: 'https://dentalum.se',
+                lat: 59.6358,
+                lng: 17.0773
+            },
+            {
+                name: 'Tandvårdsgruppen Fruängen',
+                address: 'Fruängsgången 2, Hägersten',
+                phone: '+46 8 464 64 70',
+                url: 'https://tandvardsgruppen.se',
+                lat: 59.2855,
+                lng: 17.9639
+            },
+            {
+                name: 'Dorell Tandvård',
+                address: 'Nytorgsgatan 3A, Örnsköldsvik',
+                phone: '+46 660 14 900',
+                url: 'https://dorelltandvard.se',
+                lat: 63.2909,
+                lng: 18.7152
+            }
+        ];
+
+        // Initialize map centered on Sweden
+        var map = L.map('map', {
+            zoomControl: true,
+            scrollWheelZoom: true
+        }).setView([61.0, 17.5], 5);
+
+        // Tile layer — clean CartoDB Positron
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Custom marker icon
+        var clinicIcon = L.divIcon({
+            className: 'custom-marker',
+            html: '<div style="width:28px;height:28px;background:#1a6b8a;border:3px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.25);"></div>',
+            iconSize: [28, 28],
+            iconAnchor: [14, 14],
+            popupAnchor: [0, -16]
+        });
+
+        var activeIcon = L.divIcon({
+            className: 'custom-marker',
+            html: '<div style="width:34px;height:34px;background:#2aa5d4;border:3px solid white;border-radius:50%;box-shadow:0 2px 12px rgba(42,165,212,0.4);"></div>',
+            iconSize: [34, 34],
+            iconAnchor: [17, 17],
+            popupAnchor: [0, -19]
+        });
+
+        var markers = [];
+        var listEl = document.getElementById('clinicList');
+
+        clinics.forEach(function (clinic, index) {
+            // Create marker
+            var marker = L.marker([clinic.lat, clinic.lng], { icon: clinicIcon }).addTo(map);
+
+            var popupHtml =
+                '<h3>' + clinic.name + '</h3>' +
+                '<p>' + clinic.address + '</p>' +
+                '<p>' + clinic.phone + '</p>' +
+                '<a href="' + clinic.url + '" target="_blank" rel="noopener noreferrer">' + clinic.url.replace('https://', '') + ' &rarr;</a>';
+
+            marker.bindPopup(popupHtml);
+
+            marker.on('click', function () {
+                setActive(index);
+            });
+
+            marker.on('popupclose', function () {
+                marker.setIcon(clinicIcon);
+                var items = listEl.querySelectorAll('.clinic-item');
+                items.forEach(function (item) { item.classList.remove('active'); });
+            });
+
+            markers.push(marker);
+
+            // Create sidebar item
+            var item = document.createElement('div');
+            item.className = 'clinic-item';
+            item.setAttribute('data-index', index);
+            item.innerHTML =
+                '<h3>' + clinic.name + '</h3>' +
+                '<p>' + clinic.address + '</p>' +
+                '<span class="phone">' + clinic.phone + '</span><br>' +
+                '<a href="' + clinic.url + '" target="_blank" rel="noopener noreferrer">' + clinic.url.replace('https://', '') + ' &rarr;</a>';
+
+            item.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') return; // Let links work normally
+                setActive(index);
+                map.setView([clinic.lat, clinic.lng], 14, { animate: true });
+                markers[index].openPopup();
+            });
+
+            listEl.appendChild(item);
+        });
+
+        function setActive(index) {
+            // Reset all markers
+            markers.forEach(function (m) { m.setIcon(clinicIcon); });
+            // Highlight active
+            markers[index].setIcon(activeIcon);
+            // Update sidebar
+            var items = listEl.querySelectorAll('.clinic-item');
+            items.forEach(function (item, i) {
+                item.classList.toggle('active', i === index);
+            });
+            // Scroll sidebar item into view
+            items[index].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Fit map to show all markers
+        var group = L.featureGroup(markers);
+        map.fitBounds(group.getBounds().pad(0.15));
+
+    })();
+    </script>
+</body>
+</html>

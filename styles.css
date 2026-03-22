@@ -724,6 +724,12 @@ h1, h2, h3, h4 {
     line-height: 1.6;
 }
 
+.clinic-phone {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    margin-bottom: 16px;
+}
+
 .clinic-link {
     font-size: 0.9rem;
     font-weight: 600;
@@ -733,6 +739,11 @@ h1, h2, h3, h4 {
 
 .clinic-card:hover .clinic-link {
     color: var(--color-primary-dark);
+}
+
+.clinics-map-link {
+    text-align: center;
+    margin-top: 48px;
 }
 
 /* --- Blog / News Section --- */
