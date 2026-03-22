@@ -1166,32 +1166,44 @@ h1, h2, h3, h4 {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 280px;
+        width: 300px;
         height: 100vh;
         height: 100dvh;
         background: var(--color-bg);
         flex-direction: column;
-        padding: 88px 24px 32px;
+        padding: 80px 20px 32px;
         box-shadow: var(--shadow-lg);
         transition: var(--transition);
-        gap: 2px;
+        gap: 6px;
         overflow-y: auto;
+        justify-content: center;
     }
 
     .nav-links.active {
         right: 0;
     }
 
+    .nav-links li {
+        list-style: none;
+    }
+
     .nav-links a {
         width: 100%;
-        padding: 12px 16px;
-        font-size: 0.95rem;
+        display: block;
+        padding: 14px 20px;
+        font-size: 1.05rem;
         border-radius: var(--radius-sm);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-links li:last-child a {
+        border-bottom: none;
     }
 
     .nav-links .nav-cta {
-        margin-top: 8px;
+        margin-top: 16px;
         text-align: center;
+        border-bottom: none;
     }
 
     .section {
